@@ -92,11 +92,10 @@
                              {1 :navarasu/onedark.nvim
                               :config (fn []
                                         (local od (require :onedark))
-                                        ((. od :setup) {:style :warmer})
-                                        ((. od :load)))
+                                        ((. od :setup) {:style :warmer}))
                               :opts {}}
                              {1 :ellisonleao/gruvbox.nvim
-                              :config (fn [] (vim.cmd.colorscheme :gruvbox))
+                              ; :config (fn [] (vim.cmd "colorscheme gruvbox"))
                               :opts {}}
                              {1 :nvim-lualine/lualine.nvim
                               :config (fn []
@@ -152,8 +151,20 @@
                                         (bind-key :n :<leader>fo
                                                   ":Telescope oldfiles theme=ivy<CR>"
                                                   {:silent true})
+                                        (bind-key :n :<leader>pr
+                                                  ":Telescope registers theme=ivy<CR>"
+                                                  {:silent true})
+                                        (bind-key :n :<leader>gb
+                                                  ":Telescope git_branches<CR>"
+                                                  {:silent true})
+                                        (bind-key :n :<leader>gs
+                                                  ":Telescope git_status<CR>"
+                                                  {:silent true})
                                         (bind-key :n :<leader>fb
                                                   ":Telescope buffers theme=ivy<CR>"
+                                                  {:silent true})
+                                        (bind-key :n :<leader>vd
+                                                  "<CMD>lua vim.diagnostic.disable()<CR>"
                                                   {:silent true})
                                         (bind-key :n :<C-/>
                                                   (fn []
@@ -282,6 +293,12 @@
                                         ((. (require :toggleterm) :setup))
                                         (bind-key :n :<leader>ot
                                                   :<CMD>ToggleTerm<CR>))}
+                             {1 :projekt0n/github-nvim-theme
+                              :config (fn []
+                                        ((. (require :github-theme) :setup) {})
+                                        (vim.cmd "colorscheme github_light"))
+                              :lazy false
+                              :priority 1000}
                              {1 :SuperBo/fugit2.nvim
                               :opts {}
                               :lazy false
