@@ -44,7 +44,13 @@
                     [:n :<C-s> :<CMD>w<CR>]
                     [:n :<C-y> :5<C-y>]
                     [:n :<C-e> :5<C-e>]
-                    [:n :<leader>vd ":lua vim.diagnostic.disable()<CR>"]]]
+                    [:n
+                     :<leader>vt
+                     (fn []
+                       (local is-disabled (vim.diagnostic.is_disabled))
+                       (if is-disabled
+                           (vim.diagnostic.enable)
+                           (vim.diagnostic.disable)))]]]
   (each [_ binding (ipairs key-bindings)]
     (let [[mode key command] binding]
       (bind-key mode key command))))
