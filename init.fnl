@@ -43,7 +43,8 @@
                     [:n :<C-h> :<C-w><C-h>]
                     [:n :<C-s> :<CMD>w<CR>]
                     [:n :<C-y> :5<C-y>]
-                    [:n :<C-e> :5<C-e>]]]
+                    [:n :<C-e> :5<C-e>]
+                    [:n :<leader>vd ":lua vim.diagnostic.disable()<CR>"]]]
   (each [_ binding (ipairs key-bindings)]
     (let [[mode key command] binding]
       (bind-key mode key command))))
