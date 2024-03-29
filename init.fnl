@@ -70,13 +70,25 @@
 ;; on write, compile this file to init.lua
 (vim.api.nvim_create_autocmd :BufWritePost
                              {:desc "Compiles init fennel to lua"
-                              :group (vim.api.nvim_create_augroup :fnl-lua
+                              :group (vim.api.nvim_create_augroup :fnl-nvim-lua
                                                                   {:clear true})
                               :pattern :init.fnl
                               ; TODO: can I restrict this to only consider ~/.config/nvim/init.fnl, and not, say, ~/.config/nvim/fnl/.../init.fnl ?
                               :callback (fn []
                                           (local status-code
                                                  ((. (require :os) :execute) "rm ~/.config/nvim/init.lua && fennel --globals vim --compile ~/.config/nvim/init.fnl >> ~/.config/nvim/init.lua"))
+                                          (if (not (= status-code 0))
+                                              (print "Compilation failed... check yo self")))})
+
+(vim.api.nvim_create_autocmd :BufWritePost
+                             {:desc "Compiles wezterm.lua -> wezterm.fnl"
+                              :group (vim.api.nvim_create_augroup :fnl-wt-lua
+                                                                  {:clear true})
+                              :pattern :wezterm.fnl
+                              ; TODO: can I restrict this to only consider ~/.config/nvim/init.fnl, and not, say, ~/.config/nvim/fnl/.../init.fnl ?
+                              :callback (fn []
+                                          (local status-code
+                                                 ((. (require :os) :execute) "rm ~/.config/wezterm/wezterm.lua && fennel --compile ~/.config/wezterm/wezterm.fnl >> ~/.config/wezterm/wezterm.lua"))
                                           (if (not (= status-code 0))
                                               (print "Compilation failed... check yo self")))})
 
