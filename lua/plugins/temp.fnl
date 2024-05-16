@@ -9,6 +9,12 @@
  ; {1 :ellisonleao/gruvbox.nvim
  ;  :config (fn [] (vim.cmd "colorscheme gruvbox"))
  ;  :opts {}}
+ {1 :folke/zen-mode.nvim
+  :lazy true
+  :opts {:plugins {:options {:laststatus 0} :twilight {:enabled false}}}
+  :keys [{1 :<leader>tz 2 :<CMD>ZenMode<CR>}]}
+ {1 :MunifTanjim/nui.nvim}
+ {1 :tpope/vim-dadbod}
  {1 :nvim-lualine/lualine.nvim
   :config true
   :dependencies [:nvim-tree/nvim-web-devicons]}
@@ -29,7 +35,8 @@
                    (.. (: (mason-registry.get_package :vue-language-server)
                           :get_install_path)
                        "/node_modules/@vue/language-server"))
-            (local lspconfig (require :lspconfig)) ; (lspconfig.ruff_lsp.setup {}) ; TODO: Use me for everything but types
+            (local lspconfig (require :lspconfig))
+            (lspconfig.ruff_lsp.setup {}) ; TODO: Use me for everything but types
             (lspconfig.pyright.setup {; TODO: Use me for types, nothing else
                                       })
             (lspconfig.jqls.setup {})
@@ -119,10 +126,10 @@
   :opts {:notify_on_error true
          :formatters_by_ft {:fennel [:fnlfmt]
                             :javascript [:prettier]
-                            :python [:ruff]
+                            :python [:ruff_format]
                             ; :sql [:sqlfmt]
                             }
-         :format_on_save {:timeout_ms 500 :lsp_fallback false}}}
+         :format_on_save {:timeout_ms 500 :lsp_fallback true}}}
  {1 :luukvbaal/statuscol.nvim :config true :opts {:relculright true}}
  {1 :lukas-reineke/indent-blankline.nvim
   :config (fn []
@@ -149,17 +156,17 @@
             (local lazygit (Terminal:new {:cmd :lazygit :direction :float}))
             (vim.keymap.set :n :<leader>ot :<CMD>ToggleTerm<CR>)
             (vim.keymap.set :n :<leader>gg (fn [] (lazygit:toggle))))}
- ; {1 :projekt0n/github-nvim-theme
- ;  :config (fn []
- ;            ((. (require :github-theme) :setup) {}) ; (vim.cmd "colorscheme github_dark") 
- ;            (vim.cmd "colorscheme github_light"))
- ;  :lazy false
- ;  :priority 1000}
- {1 :vhyrro/luarocks.nvim :priority 1000 :config true}
- {1 :olimorris/onedarkpro.nvim
-  :priority 1000
+ {1 :projekt0n/github-nvim-theme
+  :config (fn []
+            ((. (require :github-theme) :setup) {}) ; (vim.cmd "colorscheme github_dark") 
+            (vim.cmd "colorscheme github_light"))
   :lazy false
-  :config (fn [] (vim.cmd "colorscheme onedark"))}
+  :priority 1000}
+ {1 :vhyrro/luarocks.nvim :priority 1000 :config true}
+ ; {1 :olimorris/onedarkpro.nvim
+ ;  :priority 1000
+ ;  :lazy false
+ ;  :config (fn [] (vim.cmd "colorscheme onedark"))}
  {1 :nvim-neorg/neorg
   :dependencies [:luarocks.nvim]
   :lazy false

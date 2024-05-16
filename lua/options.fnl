@@ -4,7 +4,7 @@
 (let [options {:number true
                :relativenumber true
                :mouse :a
-               :bg :light
+               :bg :dark
                :clipboard :unnamedplus
                :breakindent true
                :wrap false
