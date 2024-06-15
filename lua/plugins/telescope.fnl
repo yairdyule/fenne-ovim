@@ -12,6 +12,7 @@
         {1 :<leader>ff 2 "<CMD>Telescope find_files<CR>"}
         {1 :<leader>fw 2 "<CMD>Telescope live_grep<CR>"}
         {1 :<leader>th 2 "<CMD>Telescope colorscheme<CR>"}
+        {1 :<leader>tr 2 "<CMD>Telescope resume<CR>"}
         {1 :<leader>td 2 "<CMD>Telescope diagnostics<CR>"}
         {1 :<leader>pr 2 "<CMD>Telescope registers<CR>"}
         {1 :<leader>gb 2 "<CMD>Telescope git_branches<CR>"}
@@ -210,10 +211,10 @@
                                                                           box))
 
                                                          (TSLayout layout))
-                                        :layout_config {:horizontal {:size {:height "90%"
-                                                                            :width "90%"}}
-                                                        :vertical {:size {:height "90%"
-                                                                          :width "90%"}}}
+                                        :layout_config {:horizontal {:size {:height "100%"
+                                                                            :width "100%"}}
+                                                        :vertical {:size {:height "100%"
+                                                                          :width "100%"}}}
                                         :layout_strategy :flex}})
            (telescope.load_extension :fzf))
  : keys}

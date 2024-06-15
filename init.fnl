@@ -1,14 +1,19 @@
 (local vim vim)
 
-(local leader " ")
-(set vim.g.mapleader leader)
-(set vim.g.maplocalleader leader)
+;; TODO: Rainbow parens in lisp mode
+;; TODO: Unified wezterm/vim colorscheme
+;; TODO: <Tab> through position in snippets
+;; TODO: Integrate nvim-jqx https://github.com/gennaro-tedesco/nvim-jqx
 
-(require :au)
-(require :options)
-(require :lazy-bs)
-(require :general-bindings)
+(set vim.o.background :dark)
+(set vim.g.colorscheme :onedark)
+(set vim.g.mapleader " ")
+(set vim.g.maplocalleader " ")
 
-(local lazy (require :lazy))
-(lazy.setup :plugins)
+(local modules [:autocommands :options :lazy-bootstrap :general-bindings])
+(each [_ m (ipairs modules)]
+  (require m))
+
+(let [lazy (require :lazy)]
+  (lazy.setup :plugins))
 

@@ -14,3 +14,15 @@
                                           (vim.cmd "hi clear SignColumn") ; (vim.cmd "hi Normal guibg=None ctermbg=None")
                                           )})
 
+;; Sometimes I hate vim
+(vim.api.nvim_create_autocmd :WinLeave
+                             {:callback (fn []
+                                          (when (and (= vim.bo.ft
+                                                        :TelescopePrompt)
+                                                     (= (vim.fn.mode) :i))
+                                            (vim.api.nvim_feedkeys (vim.api.nvim_replace_termcodes :<Esc>
+                                                                                                   true
+                                                                                                   false
+                                                                                                   true)
+                                                                   :i false)))})
+
