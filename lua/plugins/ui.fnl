@@ -6,7 +6,10 @@
  {1 :folke/trouble.nvim
   :opts {}
   :cmd :Trouble
-  :keys [{1 :<leader>cs 2 "<CMD>Trouble symbols toggle focus=false<CR>"}]}
+  ; TODO: Add more bindings
+  :keys [{1 :<leader>xt 2 "<CMD>Trouble todo toggle<CR>"}
+         {1 :<leader>xx 2 "<CMD>Trouble diagnostics toggle<CR>"}
+         {1 :<leader>cs 2 "<CMD>Trouble symbols toggle focus=false<CR>"}]}
  {1 :MunifTanjim/nui.nvim}
  {1 :luukvbaal/statuscol.nvim :config true :opts {:relculright true}}
  {1 :lukas-reineke/indent-blankline.nvim
